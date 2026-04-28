@@ -88,30 +88,10 @@ export default function WorkWithUsPage() {
       {/* OPTIONS */}
       <div className="max-w-2xl mx-auto space-y-3">
         {[
-          {
-            key: "careers",
-            label: "Careers",
-            icon: "fa-briefcase",
-            desc: "Join our team in software, media, and digital systems development.",
-          },
-          {
-            key: "internships",
-            label: "Internships",
-            icon: "fa-graduation-cap",
-            desc: "Learn and grow through real-world mission technology projects.",
-          },
-          {
-            key: "volunteering",
-            label: "Volunteering",
-            icon: "fa-hands-helping",
-            desc: "Support mission work with your skills and time.",
-          },
-          {
-            key: "partnership",
-            label: "Partnership",
-            icon: "fa-handshake",
-            desc: "Collaborate with institutions, churches, and organizations.",
-          },
+          { key: "careers", label: "Careers", icon: "fa-briefcase", desc: "Join our team in software, media, and digital systems development." },
+          { key: "internships", label: "Internships", icon: "fa-graduation-cap", desc: "Learn and grow through real-world mission technology projects." },
+          { key: "volunteering", label: "Volunteering", icon: "fa-hands-helping", desc: "Support mission work with your skills and time." },
+          { key: "partnership", label: "Partnership", icon: "fa-handshake", desc: "Collaborate with institutions, churches, and organizations." },
         ].map((item) => (
           <button
             key={item.key}
@@ -125,11 +105,7 @@ export default function WorkWithUsPage() {
             <i className={`fa-solid ${item.icon}`} />
             <div>
               <p className="text-sm font-medium">{item.label}</p>
-              <p
-                className={`text-xs ${
-                  mode === item.key ? "text-white/80" : "text-gray-500"
-                }`}
-              >
+              <p className={`text-xs ${mode === item.key ? "text-white/80" : "text-gray-500"}`}>
                 {item.desc}
               </p>
             </div>
@@ -137,7 +113,7 @@ export default function WorkWithUsPage() {
         ))}
       </div>
 
-      {/* FORM */}
+      {/* FORM SECTION */}
       {mode && (
         <div className="max-w-2xl mx-auto mt-10 bg-white border rounded-2xl p-6 space-y-4">
 
@@ -150,7 +126,7 @@ export default function WorkWithUsPage() {
             Submit your details and we will reach out to you.
           </p>
 
-          {/* INPUTS */}
+          {/* FORM */}
           <div className="space-y-3">
             <input
               name="name"
@@ -189,33 +165,17 @@ export default function WorkWithUsPage() {
           <button
             onClick={submitApplication}
             disabled={loading}
-            className={`w-full py-3 rounded-xl flex items-center justify-center gap-2 text-white transition
-              ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#7f264a] hover:bg-[#6a1f3f]"}`}
+            className="w-full bg-[#7f264a] text-white py-3 rounded-xl flex items-center justify-center gap-2"
           >
-            {loading ? (
-              <>
-                <i className="fa-solid fa-spinner fa-spin"></i>
-                Submitting...
-              </>
-            ) : (
-              <>
-                <i className="fa-solid fa-paper-plane"></i>
-                Apply & Create Account
-              </>
-            )}
+            <i className="fa-solid fa-paper-plane"></i>
+            {loading ? "Submitting..." : "Apply & Create Account"}
           </button>
 
           {/* SUCCESS */}
           {success && (
-            <div className="mt-3 p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm">
-              <div className="flex items-center gap-2 font-medium">
-                <i className="fa-solid fa-circle-check"></i>
-                Application Submitted
-              </div>
-              <p className="mt-1">
-                Successfully submitted. Credentials and confirmation email have been sent to your inbox.
-              </p>
-            </div>
+            <p className="text-green-600 text-sm">
+              Application submitted successfully.
+            </p>
           )}
         </div>
       )}
