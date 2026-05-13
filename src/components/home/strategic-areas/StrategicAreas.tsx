@@ -10,7 +10,7 @@ export default function StrategicAreas() {
       {/* ================= SUBTLE BACKGROUND ================= */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
         <Image
-          src="/images/man-computer.webp"
+          src="/images/tait-team1.webp"
           alt="TAIT background pattern"
           fill
           className="object-cover object-center"

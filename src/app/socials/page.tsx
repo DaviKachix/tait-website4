@@ -3,7 +3,12 @@
 export default function SocialsPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
-
+  <br>
+        </br>
+         <br>
+        </br>
+         <br>
+        </br>
       {/* ================= INTRO ================= */}
       <div className="max-w-2xl mx-auto text-center space-y-3 mb-10">
 

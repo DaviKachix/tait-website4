@@ -70,7 +70,12 @@ export default function WorkWithUsPage() {
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
-
+  <br>
+        </br>
+         <br>
+        </br>
+         <br>
+        </br>
       {/* INTRO */}
       <div className="max-w-2xl mx-auto text-center space-y-3 mb-10">
         <div className="w-12 h-12 mx-auto rounded-xl bg-[#7f264a]/10 flex items-center justify-center text-[#7f264a]">

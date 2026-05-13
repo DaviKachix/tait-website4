@@ -8,6 +8,12 @@ export default function Page() {
 
       {/* ================= HERO ================= */}
       <Section bg="gray" spacing="md">
+        <br>
+        </br>
+         <br>
+        </br>
+         <br>
+        </br>
         <div className="max-w-3xl mx-auto text-center space-y-4">
 
           <SectionTitle title="About TAIT" />
@@ -65,7 +71,7 @@ export default function Page() {
           {/* IMAGE */}
           <div className="relative w-full h-[340px] rounded-2xl overflow-hidden shadow-xl">
             <Image
-              src="/images/team.webp"
+              src="/images/tait-team2.webp"
               alt="TAIT Team Collaboration"
               fill
               className="object-cover"

@@ -6,6 +6,12 @@ import ResearchSection from "./components/ResearchSection";
 export default function StrategicAreasPage() {
   return (
     <main className="min-h-screen bg-white">
+        <br>
+        </br>
+         <br>
+        </br>
+         <br>
+        </br>
       <OverviewSection />
       <DevelopmentSection />
       <MediaSection />

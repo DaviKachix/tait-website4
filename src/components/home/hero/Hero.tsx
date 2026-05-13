@@ -26,17 +26,17 @@ const slides: Slide[] = [
     cta2: "/work-with-us",
     ctaLabel1: "Explore Our Work",
     ctaLabel2: "Join the Mission",
-    image: "/images/team.webp",
+    image: "/images/tait.webp",
   },
   {
     type: "image",
     title: "MEDIA FOR MISSION & EVANGELISM",
-    image: "/images/team.webp",
+    image: "/images/tait.webp",
   },
   {
     type: "image",
     title: "RESEARCH, SYSTEMS & INNOVATION",
-    image: "/images/team.webp",
+    image: "/images/tait.webp",
   },
 ];
 
@@ -54,18 +54,15 @@ export default function Hero() {
   const active = slides[index];
 
   return (
-    <section className="relative w-full h-[85vh] overflow-hidden">
+    <section className="relative w-full h-screen overflow-hidden">
 
       {/* ================= BACKGROUND ================= */}
       {slides.map((slide, i) => (
         <div
           key={i}
-          className={`absolute inset-0 transition-all duration-1000 ease-in-out
-            ${
-              i === index
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-110"
-            }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
         >
           <Image
             src={slide.image}
@@ -75,79 +72,109 @@ export default function Hero() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/80" />
+          {/* cleaner overlay */}
+          <div className="absolute inset-0 bg-black/45" />
+
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/60" />
         </div>
       ))}
 
       {/* ================= CONTENT ================= */}
       <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
 
-        {active.type === "hero" ? (
-          <div className="max-w-4xl text-white">
+        <div
+          key={index}
+          className="animate-[fadeUp_0.9s_ease]"
+        >
 
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
-              {active.title}
-            </h1>
+          {active.type === "hero" ? (
+            <div className="max-w-4xl text-white">
 
-            {active.text && (
-              <p className="mt-5 text-sm sm:text-base md:text-lg text-white/90">
-                {active.text}
-              </p>
-            )}
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tight">
+                {active.title}
+              </h1>
 
-            {active.subtext && (
-              <p className="mt-3 text-xs sm:text-sm md:text-base text-white/75">
-                {active.subtext}
-              </p>
-            )}
+              {active.text && (
+                <p className="mt-5 text-base md:text-lg text-white/90">
+                  {active.text}
+                </p>
+              )}
 
-            {/* CTA */}
-            {(active.cta1 || active.cta2) && (
-              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+              {active.subtext && (
+                <p className="mt-4 text-sm md:text-base text-white/80">
+                  {active.subtext}
+                </p>
+              )}
 
-                {active.cta1 && (
-                  <Link
-                    href={active.cta1 as string}
-                    className="px-6 py-3 bg-[#7f264a] text-white font-semibold rounded-md shadow-lg hover:scale-105 transition"
-                  >
-                    {active.ctaLabel1 ?? "Learn More"}
-                  </Link>
-                )}
+              {/* CTA */}
+              {(active.cta1 || active.cta2) && (
+                <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
 
-                {active.cta2 && (
-                  <Link
-                    href={active.cta2 as string}
-                    className="px-6 py-3 border border-white text-white font-semibold rounded-md hover:bg-white hover:text-[#7f264a] transition"
-                  >
-                    {active.ctaLabel2 ?? "Get Started"}
-                  </Link>
-                )}
+                  {active.cta1 && (
+                    <Link
+                      href={active.cta1 as string}
+                      className="px-7 py-3 bg-white text-black font-medium rounded-xl transition duration-300 hover:scale-105"
+                    >
+                      {active.ctaLabel1 ?? "Learn More"}
+                    </Link>
+                  )}
 
-              </div>
-            )}
+                  {active.cta2 && (
+                    <Link
+                      href={active.cta2 as string}
+                      className="px-7 py-3 border border-white/40 bg-white/10 backdrop-blur-sm text-white font-medium rounded-xl transition duration-300 hover:bg-white hover:text-black"
+                    >
+                      {active.ctaLabel2 ?? "Get Started"}
+                    </Link>
+                  )}
 
-          </div>
-        ) : (
-          <div className="text-white max-w-3xl">
-            <h2 className="text-xl sm:text-3xl md:text-5xl font-bold">
-              {active.title}
-            </h2>
-          </div>
-        )}
+                </div>
+              )}
+
+            </div>
+          ) : (
+            <div className="text-white max-w-3xl">
+
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight">
+                {active.title}
+              </h2>
+
+            </div>
+          )}
+
+        </div>
       </div>
 
       {/* ================= DOTS ================= */}
-      <div className="absolute bottom-6 w-full flex justify-center gap-2 z-20">
+      <div className="absolute bottom-8 w-full flex justify-center gap-3 z-20">
+
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i === index ? "bg-[#7f264a] scale-125" : "bg-white/40"
+            className={`transition-all duration-300 ${
+              i === index
+                ? "w-10 h-2 rounded-full bg-white"
+                : "w-2 h-2 rounded-full bg-white/50"
             }`}
           />
         ))}
+
       </div>
+
+      {/* animation */}
+      <style jsx>{`
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
 
     </section>
   );

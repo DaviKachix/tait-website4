@@ -22,7 +22,12 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
-
+  <br>
+        </br>
+         <br>
+        </br>
+         <br>
+        </br>
       {/* ================= SIMPLE TITLE ================= */}
       <div className="max-w-xl mx-auto text-center mb-10">
         <div className="w-12 h-12 mx-auto rounded-xl bg-[#7f264a]/10 flex items-center justify-center text-[#7f264a]">

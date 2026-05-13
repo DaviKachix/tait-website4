@@ -23,7 +23,7 @@ export default function ChurchEmpowerment() {
         <div className="relative w-full h-[320px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg group">
 
           <Image
-            src="/images/team.webp"
+            src="/images/tait-team1.webp"
             alt="Church Empowerment"
             fill
             className="object-cover object-center transition-transform duration-700 group-hover:scale-105"

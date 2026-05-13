@@ -15,8 +15,7 @@ export default function Navbar() {
   return (
     <>
       {/* ================= DESKTOP NAV ================= */}
-      <div className="sticky top-4 z-50 flex justify-center">
-        <nav className="bg-[#7f264a] text-white rounded-2xl shadow-xl w-[95%] max-w-7xl">
+<div className="fixed inset-x-0 top-0 z-50 flex items-start justify-center px-4 pt-4">        <nav className="bg-[#7f264a] text-white rounded-2xl shadow-xl w-[95%] max-w-7xl">
 
           <div className="px-6 py-3 flex items-center justify-between">
 
