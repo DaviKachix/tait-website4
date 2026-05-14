@@ -21,29 +21,40 @@ export const metadata: Metadata = {
     "Digital Mission",
     "Media Evangelism",
     "Research and Innovation",
+    "Christian Technology Institute",
+    "Digital Ministry Platform",
   ],
 
-  authors: [{ name: "TAIT" }],
+  authors: [
+    {
+      name: "TAIT",
+      url: "https://tait.tz",
+    },
+  ],
+
+  creator: "TAIT",
+  publisher: "TAIT",
 
   icons: {
     icon: [
-      { url: "/TAIT.svg", type: "image/svg+xml" },
-      { url: "/TAIT.jpg", type: "image/jpeg" },
+      { url: "images/TAIT.jpg", type: "image/jpeg" },
     ],
-    shortcut: "/TAIT.jpg",
-    apple: "/TAIT.jpg",
+    shortcut: "images/TAIT.jpg",
+    apple: "images/TAIT.jpg",
   },
 
+  manifest: "manifest.json",
+
   openGraph: {
-    title: "TAIT",
+    title: "TAIT - Tanzania Adventist Institute of Technology",
     description:
-      "Technology at the Heart of the Mission — digital transformation for the Church.",
+      "Technology at the Heart of the Mission — digital transformation for the Church through systems, media, and innovation.",
     url: "https://tait.tz",
-    siteName: "TAIT",
+    siteName: "TAIT Adventist",
     type: "website",
     images: [
       {
-        url: "/TAIT.jpg",
+        url: "images/TAIT.jpg",
         width: 1200,
         height: 630,
         alt: "TAIT Logo",
@@ -53,11 +64,15 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "TAIT",
+    title: "TAIT - Tanzania Adventist Institute of Technology",
     description:
-      "Technology at the Heart of the Mission — digital transformation for the Church.",
-    images: ["/TAIT.jpg"],
+      "Technology at the Heart of the Mission — empowering digital transformation for the Church.",
+    images: ["images/TAIT.jpg"],
+    creator: "@tait",
   },
+
+  applicationName: "TAIT",
+  category: "education, technology, religion, non-profit",
 };
 
 export default function RootLayout({
