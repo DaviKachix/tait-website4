@@ -58,7 +58,9 @@ export default function Navbar() {
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-               
+                <button className="hover:text-white/80 transition">
+                  Products ▾
+                </button>
 
                 <div
                   className={`absolute top-full left-0 mt-3 w-52 bg-white text-[#7f264a] rounded-md shadow-lg overflow-hidden transition-all duration-200 origin-top ${
@@ -107,6 +109,10 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
+
+              <Link className="hover:text-white/80 transition" href="/articles">
+                Articles
+              </Link>
 
               <Link className="hover:text-white/80 transition" href="/work-with-us">
                 Join Us
@@ -224,6 +230,44 @@ export default function Navbar() {
           ))}
         </div>
 
+        {/* ================= PRODUCTS ================= */}
+        <div className="border-t border-[#7f264a]/10 pt-3">
+
+          <button
+            onClick={() => setMProducts(!mProducts)}
+            className="w-full flex justify-between items-center px-3 py-2 font-semibold text-[#7f264a]"
+          >
+            Products
+            <span>{mProducts ? "−" : "+"}</span>
+          </button>
+
+          <div
+            className={`
+              ml-2 space-y-1 overflow-hidden transition-all duration-300
+              ${mProducts ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0"}
+            `}
+          >
+            {[
+              { href: "/systems", label: "Systems" },
+              { href: "/platforms", label: "Platforms" },
+              { href: "/tools", label: "Tools" },
+            ].map((item, i) => (
+              <Link
+                key={i}
+                onClick={() => setMobileOpen(false)}
+                href={item.href}
+                className="
+                  block px-3 py-2 rounded-md
+                  text-[#7f264a]/80
+                  hover:bg-[#7f264a]/10
+                  transition
+                "
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
 
         {/* ================= FOCUS ================= */}
         <div className="border-t border-[#7f264a]/10 pt-3">
