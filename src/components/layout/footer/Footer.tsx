@@ -67,8 +67,7 @@ export default function Footer() {
 
             <p className="font-semibold mt-5">Development</p>
             <ul className="mt-2 space-y-1">
-              <li><a href="/hr" className="hover:underline">Human Resource</a></li>
-              <li><a href="/events" className="hover:underline">Events Management</a></li>
+              <li><a href="/events" className="hover:underline">Digital Events Management</a></li>
               <li><a href="/contact" className="hover:underline">Enquiries</a></li>
               <li><a href="/software" className="hover:underline">Software Development</a></li>
             </ul>

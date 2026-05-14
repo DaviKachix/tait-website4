@@ -48,10 +48,10 @@ export default function TaitChurch() {
         <div className="relative w-full h-[280px] sm:h-[340px] md:h-[420px] rounded-2xl overflow-hidden shadow-xl group">
 
           <Image
-            src="/images/tait-team2.webp"
+            src="/images/team-photo7.jpg"
             alt="TAIT Church Collaboration"
             fill
-            className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            className="object-contain object-cover object-center transition-transform duration-700 group-hover:scale-105"
             priority
           />
 

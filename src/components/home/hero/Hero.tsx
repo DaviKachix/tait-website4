@@ -26,17 +26,17 @@ const slides: Slide[] = [
     cta2: "/work-with-us",
     ctaLabel1: "Explore Our Work",
     ctaLabel2: "Join the Mission",
-    image: "/images/tait.webp",
+    image: "/images/bible-laptop.jpg",
   },
   {
     type: "image",
     title: "MEDIA FOR MISSION & EVANGELISM",
-    image: "/images/tait.webp",
+    image: "/images/bible-laptop.jpg",
   },
   {
     type: "image",
     title: "RESEARCH, SYSTEMS & INNOVATION",
-    image: "/images/tait.webp",
+    image: "/images/bible-laptop.jpg",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function Hero() {
   const active = slides[index];
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-[90vh] overflow-hidden">
 
       {/* ================= BACKGROUND ================= */}
       {slides.map((slide, i) => (
