@@ -94,10 +94,10 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href="/socials"
+                href="/contact"
                 className="bg-white text-[#7f264a] px-3 py-1 rounded-md font-bold hover:opacity-90 transition"
               >
-                Socials
+                Contact Us
               </Link>
 
             </div>
@@ -268,7 +268,7 @@ export default function Navbar() {
 
           <Link
             onClick={() => setMobileOpen(false)}
-            href="/socials"
+            href="/contact"
             className="
               inline-block mt-2
               bg-[#7f264a]
@@ -278,7 +278,7 @@ export default function Navbar() {
               hover:opacity-90 transition
             "
           >
-            Socials
+            Contact Us
           </Link>
         </div>
       </div>

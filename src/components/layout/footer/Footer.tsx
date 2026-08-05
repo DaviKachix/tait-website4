@@ -85,22 +85,19 @@ export default function Footer() {
             <h3 className="font-bold mb-3">Connect</h3>
 
             <p className="leading-relaxed">
-              Visit our socials page or reach out directly for mission partnerships, training, and support.
+              Reach out directly for mission partnerships, training, and support.
             </p>
 
             <ul className="mt-4 space-y-1">
-              <li><a href="/socials" className="hover:underline">Social updates</a></li>
+              <li><a href="/contact" className="hover:underline">Contact us</a></li>
             </ul>
 
             <div className="mt-6">
-              <h3 className="font-bold mb-3">Socials</h3>
+              <h3 className="font-bold mb-3">Contact</h3>
 
               <div className="flex gap-4 text-lg">
-                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/taitadventist?igsh=MWVvcTd1OG01bGZvNw==" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition"><i className="fab fa-instagram"></i></a>
-                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-youtube"></i></a>
-                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-x-twitter"></i></a>
-                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/taitadventist?igsh=MWVvcTd1OG01bGZvNw==" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                <a href="/contact" className="hover:opacity-80 transition" aria-label="Contact"><i className="fa-solid fa-envelope"></i></a>
               </div>
             </div>
           </div>
