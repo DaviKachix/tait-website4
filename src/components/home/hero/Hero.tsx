@@ -2,180 +2,196 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
-type Slide = {
-  type: "hero" | "image";
-  title: string;
-  text?: string;
-  subtext?: string;
-  cta1?: string;
-  cta2?: string;
-  ctaLabel1?: string;
-  ctaLabel2?: string;
-  image: string;
-};
-
-const slides: Slide[] = [
-  {
-    type: "hero",
-    title: "TECHNOLOGY AT THE HEART OF THE MISSION",
-    subtext:
-      "Solutions that strengthen institutions and extend mission reach.",
-    cta1: "/strategic-areas",
-    cta2: "/work-with-us",
-    ctaLabel1: "Explore Our Work",
-    ctaLabel2: "Join the Mission",
-    image: "/images/bible-laptop.jpg",
-  },
-  {
-    type: "image",
-    title: "MEDIA FOR MISSION & EVANGELISM",
-    image: "/images/bible-laptop.jpg",
-  },
-  {
-    type: "image",
-    title: "RESEARCH, SYSTEMS & INNOVATION",
-    image: "/images/bible-laptop.jpg",
-  },
-];
 
 export default function Hero() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const active = slides[index];
-
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden">
+    <section className="relative min-h-screen -mt-24 lg:-mt-28 overflow-hidden bg-slate-950 text-white animate-heroScene">
+      <Image
+        src="/images/bible-laptop.jpg"
+        alt="Bible and laptop for church ministry"
+        fill
+        priority
+        className="object-cover object-center animate-heroImage"
+      />
 
-      {/* ================= BACKGROUND ================= */}
-      {slides.map((slide, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            i === index ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={slide.image}
-            alt={slide.title}
-            fill
-            priority
-            className="object-cover object-center"
-          />
+      <div className="absolute inset-0 bg-slate-950/70 animate-overlayPulse" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/20 to-slate-950/95 animate-overlayFlow" />
 
-          {/* cleaner overlay */}
-          <div className="absolute inset-0 bg-black/45" />
+      <div className="relative z-10 mx-auto flex min-h-screen flex-col items-center justify-center px-6 py-24 text-center sm:px-8 lg:px-12">
+        <div className="w-full max-w-4xl space-y-8">
+          <h1 className="animate-heroHeadline text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            TECHNOLOGY AT THE HEART OF THE MISSION
+          </h1>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/60" />
-        </div>
-      ))}
+          <p className="animate-heroCopy mx-auto max-w-2xl text-xl leading-9 text-white/85 sm:text-2xl">
+            Solutions that strengthen institutions and extend mission reach.
+          </p>
 
-      {/* ================= CONTENT ================= */}
-      <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
-
-        <div
-          key={index}
-          className="animate-[fadeUp_0.9s_ease]"
-        >
-
-          {active.type === "hero" ? (
-            <div className="max-w-4xl text-white">
-
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tight">
-                {active.title}
-              </h1>
-
-              {active.text && (
-                <p className="mt-5 text-base md:text-lg text-white/90">
-                  {active.text}
-                </p>
-              )}
-
-              {active.subtext && (
-                <p className="mt-4 text-sm md:text-base text-white/80">
-                  {active.subtext}
-                </p>
-              )}
-
-              {/* CTA */}
-              {(active.cta1 || active.cta2) && (
-                <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-
-                  {active.cta1 && (
-                    <Link
-                      href={active.cta1 as string}
-                      className="px-7 py-3 bg-white text-black font-medium rounded-xl transition duration-300 hover:scale-105"
-                    >
-                      {active.ctaLabel1 ?? "Learn More"}
-                    </Link>
-                  )}
-
-                  {active.cta2 && (
-                    <Link
-                      href={active.cta2 as string}
-                      className="px-7 py-3 border border-white/40 bg-white/10 backdrop-blur-sm text-white font-medium rounded-xl transition duration-300 hover:bg-white hover:text-black"
-                    >
-                      {active.ctaLabel2 ?? "Get Started"}
-                    </Link>
-                  )}
-
-                </div>
-              )}
-
-            </div>
-          ) : (
-            <div className="text-white max-w-3xl">
-
-              <h2 className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight">
-                {active.title}
-              </h2>
-
-            </div>
-          )}
-
+          <div className="animate-heroActions mx-auto flex flex-wrap justify-center gap-4">
+            <Link
+              href="/strategic-areas"
+              className="inline-flex min-w-[180px] items-center justify-center rounded-full bg-[#7f264a] px-10 py-4 text-base font-semibold text-white transition hover:bg-[#5c1f39]"
+            >
+              Explore Our Work
+            </Link>
+            <Link
+              href="/work-with-us"
+              className="inline-flex min-w-[180px] items-center justify-center rounded-full bg-white/10 px-10 py-4 text-base font-semibold text-white transition hover:bg-white hover:text-[#7f264a]"
+            >
+              Join the Mission
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* ================= DOTS ================= */}
-      <div className="absolute bottom-8 w-full flex justify-center gap-3 z-20">
-
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`transition-all duration-300 ${
-              i === index
-                ? "w-10 h-2 rounded-full bg-white"
-                : "w-2 h-2 rounded-full bg-white/50"
-            }`}
-          />
-        ))}
-
+      <div className="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center">
+        <div className="h-1.5 w-24 rounded-full bg-white/15 shadow-[0_0_35px_rgba(255,255,255,0.2)] animate-pulseLine" />
       </div>
 
-      {/* animation */}
       <style jsx>{`
-        @keyframes fadeUp {
+        .animate-heroScene {
+          animation: heroSceneEase 1s ease-out forwards, heroSceneAmbient 30s ease-in-out infinite alternate;
+        }
+
+        .animate-heroImage {
+          animation: imageGlide 1.4s ease-out forwards, imageDrift 30s ease-in-out infinite alternate;
+          transform: scale(1.02);
+        }
+
+        .animate-overlayPulse {
+          animation: overlayPulse 10s ease-in-out infinite alternate;
+        }
+
+        .animate-overlayFlow {
+          animation: overlayFlow 30s linear infinite;
+        }
+
+        .animate-heroHeadline,
+        .animate-heroCopy,
+        .animate-heroActions {
+          opacity: 0;
+          transform: translateY(26px) scale(0.98);
+          animation: heroFadeUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .animate-heroHeadline {
+          animation-delay: 0.18s;
+        }
+
+        .animate-heroCopy {
+          animation-delay: 0.3s;
+        }
+
+        .animate-heroActions {
+          animation-delay: 0.44s;
+        }
+
+        @keyframes heroSceneEase {
           from {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 0.96;
+            transform: scale(0.994);
           }
           to {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1);
+          }
+        }
+
+        @keyframes imageGlide {
+          0% {
+            transform: scale(1.04) translateY(10px);
+            filter: saturate(0.9);
+          }
+          100% {
+            transform: scale(1.02) translateY(0);
+            filter: saturate(1);
+          }
+        }
+
+        @keyframes overlayPulse {
+          0% {
+            opacity: 0.68;
+          }
+          100% {
+            opacity: 0.82;
+          }
+        }
+
+        @keyframes overlayFlow {
+          0% {
+            transform: translateY(0px) skewY(0.45deg);
+          }
+          50% {
+            transform: translateY(-14px) skewY(-0.32deg);
+          }
+          100% {
+            transform: translateY(0px) skewY(0.45deg);
+          }
+        }
+
+        @keyframes heroFadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(26px) scale(0.98);
+          }
+          72% {
+            opacity: 1;
+            transform: translateY(-6px) scale(1.005);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes heroSceneAmbient {
+          0% {
+            filter: brightness(0.98) saturate(0.96);
+            transform: scale(0.9995);
+          }
+          50% {
+            filter: brightness(1.04) saturate(1.08);
+            transform: scale(1.0007);
+          }
+          100% {
+            filter: brightness(0.98) saturate(0.96);
+            transform: scale(0.9995);
+          }
+        }
+
+        @keyframes imageDrift {
+          0% {
+            transform: scale(1.02) translateY(0px) translateX(0px);
+          }
+          25% {
+            transform: scale(1.022) translateY(-6px) translateX(6px);
+          }
+          50% {
+            transform: scale(1.02) translateY(-2px) translateX(-4px);
+          }
+          75% {
+            transform: scale(1.023) translateY(4px) translateX(2px);
+          }
+          100% {
+            transform: scale(1.02) translateY(0px) translateX(0px);
+          }
+        }
+
+        .animate-pulseLine {
+          animation: pulseLine 2.8s ease-in-out infinite;
+        }
+
+        @keyframes pulseLine {
+          0%, 100% {
+            opacity: 0.75;
+            transform: scaleX(1);
+          }
+          50% {
+            opacity: 0.3;
+            transform: scaleX(0.92);
           }
         }
       `}</style>
-
     </section>
   );
 }

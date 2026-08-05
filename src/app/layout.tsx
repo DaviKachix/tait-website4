@@ -1,78 +1,79 @@
+import Script from "next/script";
+import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/navbar/Navbar";
+import ContactFloat from "@/components/layout/footer/ContactFloat";
 import Footer from "@/components/layout/footer/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tait.tz"),
-
   title: {
-    default: "TAIT - Tanzania Adventist Institute of Technology",
+    default: "TAIT — Tanzania Adventist Institute of Technology",
     template: "%s | TAIT",
   },
 
   description:
-    "Technology at the Heart of the Mission — empowering digital transformation for the Church through systems, media, research, and innovation.",
+    "TAIT empowers the Church through technology, media, and research — practical solutions for mission and education.",
 
-  keywords: [
-    "TAIT",
-    "Tanzania Adventist Institute of Technology",
-    "Adventist Technology",
-    "Church Systems",
-    "Digital Mission",
-    "Media Evangelism",
-    "Research and Innovation",
-    "Christian Technology Institute",
-    "Digital Ministry Platform",
-  ],
+  keywords: ["TAIT", "technology", "digital mission", "media", "research"],
 
-  authors: [
-    {
-      name: "TAIT",
-      url: "https://tait.tz",
-    },
-  ],
+  authors: [{ name: "Tanzania Adventist Institute of Technology", url: "https://tait.tz" }],
 
   creator: "TAIT",
   publisher: "TAIT",
 
   icons: {
-    icon: [
-      { url: "images/TAIT.jpg", type: "image/jpeg" },
-    ],
-    shortcut: "images/TAIT.jpg",
-    apple: "images/TAIT.jpg",
+    icon: [{ url: "/images/TAIT.jpg", type: "image/jpeg" }],
+    shortcut: "/images/TAIT.jpg",
+    apple: "/images/TAIT.jpg",
   },
 
-  manifest: "manifest.json",
+  manifest: "/manifest.json",
 
   openGraph: {
-    title: "TAIT - Tanzania Adventist Institute of Technology",
+    title: "TAIT — Tanzania Adventist Institute of Technology",
     description:
-      "Technology at the Heart of the Mission — digital transformation for the Church through systems, media, and innovation.",
+      "Practical technology, media and research solutions for Church mission and education in Tanzania.",
     url: "https://tait.tz",
-    siteName: "TAIT Adventist",
+    siteName: "TAIT",
     type: "website",
     images: [
       {
-        url: "images/TAIT.jpg",
+        url: "/images/TAIT.jpg",
         width: 1200,
         height: 630,
-        alt: "TAIT Logo",
+        alt: "TAIT",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "TAIT - Tanzania Adventist Institute of Technology",
+    title: "TAIT — Practical tech for mission",
     description:
-      "Technology at the Heart of the Mission — empowering digital transformation for the Church.",
-    images: ["images/TAIT.jpg"],
+      "TAIT empowers the Church through technology, media and research.",
+    images: ["/images/TAIT.jpg"],
     creator: "@tait",
   },
 
   applicationName: "TAIT",
-  category: "education, technology, religion, non-profit",
+  category: "education",
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // `themeColor`, `colorScheme`, and `viewport` are intentionally omitted here
+  // to avoid App Router metadata warnings. Add `generateViewport` if custom
+  // viewport or theme-color behavior is required per-route.
 };
 
 export default function RootLayout({
@@ -95,38 +96,20 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         />
 
-        {/* Tailwind CDN (must stay before config) */}
-        <script src="https://cdn.tailwindcss.com"></script>
+        {/* Viewport and theme-color for modern metadata */}
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#1f1f23" media="(prefers-color-scheme: dark)" />
 
-        {/* Tailwind Config */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              tailwind.config = {
-                theme: {
-                  extend: {
-                    colors: {
-                      primary: '#7f264a'
-                    },
-                    fontFamily: {
-                      sans: ['Noto Sans', 'sans-serif']
-                    }
-                  }
-                }
-              }
-            `,
-          }}
-        />
       </head>
 
-      <body className="font-sans bg-white text-gray-800 antialiased">
-        {/* NAVBAR */}
+      <body className="font-sans bg-[#fbf8f5] text-gray-900 antialiased">
         <Navbar />
+        <div aria-hidden="true" className="h-24 lg:h-28" />
+        <ContactFloat />
 
-        {/* PAGE CONTENT */}
         <main className="min-h-screen">{children}</main>
 
-        {/* FOOTER */}
         <Footer />
       </body>
     </html>

@@ -56,65 +56,51 @@ export default function Footer() {
 
           {/* EXPLORE */}
           <div>
-            <h3 className="font-bold mb-3">EXPROLE</h3>
+            <h3 className="font-bold mb-3">Explore</h3>
 
-            <p className="font-semibold">Key Pages</p>
-            <ul className="mt-2 space-y-1">
-              <li><a href="/education" className="hover:underline">Education & Training</a></li>
-              <li><a href="/research" className="hover:underline">Research</a></li>
+            <ul className="space-y-2">
+              <li><a href="/about" className="hover:underline">About TAIT</a></li>
               <li><a href="/services" className="hover:underline">Services</a></li>
-            </ul>
-
-            <p className="font-semibold mt-5">Development</p>
-            <ul className="mt-2 space-y-1">
-              <li><a href="/events" className="hover:underline">Digital Events Management</a></li>
-              <li><a href="/contact" className="hover:underline">Enquiries</a></li>
-              <li><a href="/software" className="hover:underline">Software Development</a></li>
+              <li><a href="/support" className="hover:underline">Support</a></li>
+              <li><a href="/work-with-us" className="hover:underline">Join Us</a></li>
+              <li><a href="/contact" className="hover:underline">Contact</a></li>
             </ul>
           </div>
 
-          {/* MISSION MEDIA */}
+          {/* FOCUS AREAS */}
           <div>
-            <h3 className="font-bold mb-3">MISSION MEDIA</h3>
+            <h3 className="font-bold mb-3">Focus Areas</h3>
 
-            <ul className="space-y-1">
-              <li><a href="/media-mission" className="hover:underline">Missionary Activities</a></li>
-              <li><a href="/initiatives" className="hover:underline">Initiatives</a></li>
-            </ul>
-
-            <h3 className="font-bold mt-6 mb-3">GUIDING POLICIES</h3>
-
-            <ul className="space-y-1">
-              <li><a href="/policies" className="hover:underline">Guiding Principles</a></li>
-              <li><a href="/terms" className="hover:underline">Terms of Use</a></li>
-              <li><a href="/privacy" className="hover:underline">Privacy Policy</a></li>
+            <ul className="space-y-2">
+              <li><a href="/media-mission" className="hover:underline">Media & Evangelism</a></li>
+              <li><a href="/research" className="hover:underline">Research & Training</a></li>
+              <li><a href="/training" className="hover:underline">Training Programmes</a></li>
+              <li><a href="/projects" className="hover:underline">Projects</a></li>
+              <li><a href="/systems" className="hover:underline">Systems & Platforms</a></li>
             </ul>
           </div>
 
-          {/* EXTERNAL LINKS + SOCIALS */}
+          {/* CONNECT */}
           <div>
-            <h3 className="font-bold mb-3">EXTERNAL LINKS</h3>
+            <h3 className="font-bold mb-3">Connect</h3>
 
             <p className="leading-relaxed">
-              Connected institutions and church platforms supporting the mission network.
+              Visit our socials page or reach out directly for mission partnerships, training, and support.
             </p>
 
             <ul className="mt-4 space-y-1">
-              <li><a href="#" className="hover:underline">Adventist.org</a></li>
-              <li><a href="#" className="hover:underline">East-Central Africa Division</a></li>
-              <li><a href="#" className="hover:underline">Tanzania Union</a></li>
+              <li><a href="/socials" className="hover:underline">Social updates</a></li>
             </ul>
 
-            {/* SOCIALS */}
             <div className="mt-6">
-              <h3 className="font-bold mb-3">Connect With Us</h3>
+              <h3 className="font-bold mb-3">Socials</h3>
 
               <div className="flex gap-4 text-lg">
-                <a href="#" className="hover:opacity-80 transition"><i className="fab fa-facebook-f"></i></a>
-                <a href="#" className="hover:opacity-80 transition"><i className="fab fa-instagram"></i></a>
-                <a href="#" className="hover:opacity-80 transition"><i className="fab fa-youtube"></i></a>
-                <a href="#" className="hover:opacity-80 transition"><i className="fab fa-x-twitter"></i></a>
-                <a href="#" className="hover:opacity-80 transition"><i className="fab fa-linkedin-in"></i></a>
+                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/taitadventist?igsh=MWVvcTd1OG01bGZvNw==" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition"><i className="fab fa-instagram"></i></a>
+                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-youtube"></i></a>
+                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-x-twitter"></i></a>
+                <a href="/socials" className="hover:opacity-80 transition"><i className="fab fa-linkedin-in"></i></a>
               </div>
             </div>
           </div>

@@ -1,10 +1,18 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Section from "@/components/shared/Section";
 import SectionTitle from "@/components/shared/SectionTitle";
+import SectionText from "@/components/shared/SectionText";
+
+export const metadata: Metadata = {
+  title: "About TAIT | Tanzania Adventist Institute of Technology",
+  description:
+    "Discover TAIT’s mission, values, and digital ministry focus on church systems, media, research, and training.",
+};
 
 export default function Page() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#faf8f4]">
 
       {/* ================= HERO ================= */}
       <Section bg="gray" spacing="md">

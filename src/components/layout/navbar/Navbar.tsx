@@ -5,11 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Navbar() {
-  const [productsOpen, setProductsOpen] = useState(false);
   const [focusOpen, setFocusOpen] = useState(false);
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mProducts, setMProducts] = useState(false);
   const [mFocus, setMFocus] = useState(false);
 
   return (
@@ -52,32 +50,9 @@ export default function Navbar() {
                 About
               </Link>
 
-              {/* PRODUCTS */}
-              <div
-                className="relative"
-                onMouseEnter={() => setProductsOpen(true)}
-                onMouseLeave={() => setProductsOpen(false)}
-              >
-               
-
-                <div
-                  className={`absolute top-full left-0 mt-3 w-52 bg-white text-[#7f264a] rounded-md shadow-lg overflow-hidden transition-all duration-200 origin-top ${
-                    productsOpen
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-95 pointer-events-none"
-                  }`}
-                >
-                  <Link className="block px-4 py-2 hover:bg-gray-100" href="/systems">
-                    Systems
-                  </Link>
-                  <Link className="block px-4 py-2 hover:bg-gray-100" href="/platforms">
-                    Platforms
-                  </Link>
-                  <Link className="block px-4 py-2 hover:bg-gray-100" href="/tools">
-                    Tools
-                  </Link>
-                </div>
-              </div>
+              <Link className="hover:text-white/80 transition" href="/services">
+                Services
+              </Link>
 
               {/* FOCUS */}
               <div
@@ -107,6 +82,8 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
+
+              
 
               <Link className="hover:text-white/80 transition" href="/work-with-us">
                 Join Us
@@ -264,11 +241,13 @@ export default function Navbar() {
           </div>
         </div>
 
+        
+
         {/* ================= OTHER LINKS ================= */}
         <div className="border-t border-[#7f264a]/10 pt-3 space-y-1">
 
           {[
-            { href: "/articles", label: "Articles" },
+            { href: "/services", label: "Services" },
             { href: "/work-with-us", label: "Join Us" },
             { href: "/contact", label: "Contact" },
           ].map((item, i) => (
