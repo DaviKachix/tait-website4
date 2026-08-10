@@ -1,6 +1,7 @@
 import { ConvexError, v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { requireAdmin } from "./lib/adminAuth";
+import { internal } from "./_generated/api";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DUPLICATE_WINDOW_MS = 60_000;
@@ -48,7 +49,7 @@ export const submit = mutation({
       throw new ConvexError("Please wait a minute before sending another message.");
     }
 
-    return await ctx.db.insert("formSubmissions", {
+    const submissionId = await ctx.db.insert("formSubmissions", {
       kind: args.kind,
       category,
       name,
@@ -56,9 +57,12 @@ export const submit = mutation({
       ...(phone ? { phone } : {}),
       ...(message ? { message } : {}),
       status: "new",
+      notificationStatus: "pending",
       createdAt: now,
       updatedAt: now,
     });
+    await ctx.scheduler.runAfter(0, internal.email.sendSubmissionNotification, { submissionId });
+    return submissionId;
   },
 });
 
@@ -99,5 +103,25 @@ export const remove = mutation({
   handler: async (ctx, args) => {
     await requireAdmin(ctx, args.sessionToken);
     await ctx.db.delete(args.id);
+  },
+});
+
+export const getForNotification = internalQuery({
+  args: { id: v.id("formSubmissions") },
+  handler: async (ctx, args) => await ctx.db.get(args.id),
+});
+
+export const setNotificationStatus = internalMutation({
+  args: {
+    id: v.id("formSubmissions"),
+    status: v.union(v.literal("sent"), v.literal("failed")),
+    error: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {
+      notificationStatus: args.status,
+      notificationError: args.error?.slice(0, 500),
+      updatedAt: Date.now(),
+    });
   },
 });

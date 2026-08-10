@@ -11,6 +11,7 @@
 import type * as adminAuth from "../adminAuth.js";
 import type * as analytics from "../analytics.js";
 import type * as cms from "../cms.js";
+import type * as email from "../email.js";
 import type * as lib_adminAuth from "../lib/adminAuth.js";
 import type * as media from "../media.js";
 import type * as pages from "../pages.js";
@@ -27,6 +28,7 @@ declare const fullApi: ApiFromModules<{
   adminAuth: typeof adminAuth;
   analytics: typeof analytics;
   cms: typeof cms;
+  email: typeof email;
   "lib/adminAuth": typeof lib_adminAuth;
   media: typeof media;
   pages: typeof pages;

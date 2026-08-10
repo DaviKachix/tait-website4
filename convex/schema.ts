@@ -15,6 +15,8 @@ export default defineSchema({
       v.literal("resolved"),
       v.literal("archived"),
     ),
+    notificationStatus: v.optional(v.union(v.literal("pending"), v.literal("sent"), v.literal("failed"))),
+    notificationError: v.optional(v.string()),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
