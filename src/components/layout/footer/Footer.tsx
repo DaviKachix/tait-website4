@@ -1,6 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 export default function Footer() {
+  const settings = useQuery(api.settings.getPublic);
+  const contact = settings?.contact as { email?: string } | undefined;
+  const organization = settings?.organization as { name?: string; description?: string; tagline?: string } | undefined;
+  const social = settings?.social as { instagram?: string } | undefined;
+  const email = contact?.email || "info@tait.tz";
   return (
     <footer className="relative bg-[#7f264a] text-white mt-16 overflow-hidden">
 
@@ -39,17 +48,16 @@ export default function Footer() {
             <h3 className="font-bold mb-3">About TAIT</h3>
 
             <p className="leading-relaxed text-white">
-              Tanzania Adventist Institute of Technology is a digital mission and technology center
-              committed to supporting the Church through systems, media, research, and innovation.
+              {organization?.description || "Tanzania Adventist Institute of Technology is a digital mission and technology center committed to supporting the Church through systems, media, research, and innovation."}
             </p>
 
             <p className="mt-4 text-white">
               Email:{" "}
               <a
-                href="mailto:info@tait.tz"
+                href={`mailto:${email}`}
                 className="font-bold underline hover:opacity-80"
               >
-                info@tait.tz
+                {email}
               </a>
             </p>
           </div>
@@ -96,7 +104,7 @@ export default function Footer() {
               <h3 className="font-bold mb-3">Contact</h3>
 
               <div className="flex gap-4 text-lg">
-                <a href="https://www.instagram.com/taitadventist?igsh=MWVvcTd1OG01bGZvNw==" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                <a href={social?.instagram || "https://www.instagram.com/taitadventist?igsh=MWVvcTd1OG01bGZvNw=="} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
                 <a href="/contact" className="hover:opacity-80 transition" aria-label="Contact"><i className="fa-solid fa-envelope"></i></a>
               </div>
             </div>
@@ -107,7 +115,7 @@ export default function Footer() {
         {/* ================= BOTTOM BAR ================= */}
         <div className="border-t border-white/30 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-center md:text-left font-medium">
-            © {new Date().getFullYear()} TAIT — Technology at the Heart of the Mission
+            © {new Date().getFullYear()} {organization?.name || "TAIT"} — {organization?.tagline || "Technology at the Heart of the Mission"}
           </p>
         </div>
 

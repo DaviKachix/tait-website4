@@ -1,0 +1,25 @@
+"use client";
+
+type SectionData = Record<string, unknown> & { type?: string };
+
+const text = (value: unknown) => typeof value === "string" ? value : "";
+const list = (value: unknown) => Array.isArray(value) ? value.filter((item): item is Record<string, unknown> => !!item && typeof item === "object") : [];
+
+export default function PageRenderer({ title, sections }: { title: string; sections: unknown[] }) {
+  return (
+    <div className="min-h-screen bg-white">
+      {sections.map((raw, index) => {
+        const section = (raw && typeof raw === "object" ? raw : {}) as SectionData;
+        const key = `${section.type ?? "section"}-${index}`;
+        if (section.type === "hero") return <section key={key} className="relative isolate overflow-hidden bg-slate-950 px-6 py-24 text-white md:py-36"><div className="absolute inset-0 -z-10 bg-cover bg-center opacity-35" style={text(section.image) ? { backgroundImage: `url(${text(section.image)})` } : undefined} /><div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/80 to-[#7f264a]/40" /><div className="mx-auto max-w-6xl"><p className="text-sm font-semibold uppercase tracking-[0.3em] text-rose-200">{text(section.eyebrow)}</p><h1 className="mt-5 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">{text(section.heading) || title}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">{text(section.body)}</p>{text(section.buttonLabel) && <a href={text(section.buttonUrl) || "#"} className="mt-8 inline-flex rounded-xl bg-[#9b315b] px-6 py-3 font-semibold text-white">{text(section.buttonLabel)}</a>}</div></section>;
+        if (section.type === "text") return <section key={key} className="px-6 py-16 md:py-24"><div className="mx-auto max-w-3xl"><h2 className="text-3xl font-bold text-slate-950 md:text-5xl">{text(section.heading)}</h2><div className="mt-6 whitespace-pre-wrap text-lg leading-8 text-slate-600">{text(section.body)}</div></div></section>;
+        if (section.type === "features") return <section key={key} className="bg-[#faf8f4] px-6 py-16 md:py-24"><div className="mx-auto max-w-6xl"><h2 className="text-center text-3xl font-bold md:text-5xl">{text(section.heading)}</h2><p className="mx-auto mt-4 max-w-2xl text-center text-slate-600">{text(section.body)}</p><div className="mt-12 grid gap-5 md:grid-cols-3">{list(section.items).map((item, itemIndex) => <div key={itemIndex} className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"><div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#7f264a]/10 text-xl text-[#7f264a]"><i className={`fa-solid ${text(item.icon) || "fa-star"}`} /></div><h3 className="mt-5 text-xl font-semibold">{text(item.title)}</h3><p className="mt-3 leading-7 text-slate-600">{text(item.body)}</p></div>)}</div></div></section>;
+        if (section.type === "imageText") return <section key={key} className="px-6 py-16 md:py-24"><div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2"><div className={`overflow-hidden rounded-[2rem] bg-slate-100 ${section.imageRight ? "md:order-2" : ""}`}><img src={text(section.image)} alt={text(section.alt)} className="aspect-[4/3] h-full w-full object-cover" /></div><div><p className="text-sm font-semibold uppercase tracking-widest text-[#7f264a]">{text(section.eyebrow)}</p><h2 className="mt-3 text-3xl font-bold md:text-5xl">{text(section.heading)}</h2><p className="mt-6 whitespace-pre-wrap text-lg leading-8 text-slate-600">{text(section.body)}</p></div></div></section>;
+        if (section.type === "stats") return <section key={key} className="bg-[#7f264a] px-6 py-14 text-white"><div className="mx-auto grid max-w-6xl gap-8 text-center sm:grid-cols-2 md:grid-cols-4">{list(section.items).map((item, itemIndex) => <div key={itemIndex}><p className="text-4xl font-bold">{text(item.value)}</p><p className="mt-2 text-sm text-rose-100">{text(item.label)}</p></div>)}</div></section>;
+        if (section.type === "gallery") return <section key={key} className="px-6 py-16 md:py-24"><div className="mx-auto max-w-6xl"><h2 className="text-3xl font-bold md:text-5xl">{text(section.heading)}</h2><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{list(section.items).map((item, itemIndex) => <figure key={itemIndex} className="overflow-hidden rounded-3xl bg-slate-100"><img src={text(item.image)} alt={text(item.alt)} className="aspect-square w-full object-cover" />{text(item.caption) && <figcaption className="p-4 text-sm text-slate-600">{text(item.caption)}</figcaption>}</figure>)}</div></div></section>;
+        if (section.type === "cta") return <section key={key} className="px-6 py-16"><div className="mx-auto max-w-5xl rounded-[2.5rem] bg-slate-950 px-7 py-14 text-center text-white md:px-16"><h2 className="text-3xl font-bold md:text-5xl">{text(section.heading)}</h2><p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">{text(section.body)}</p><a href={text(section.buttonUrl) || "/contact"} className="mt-8 inline-flex rounded-xl bg-[#9b315b] px-6 py-3 font-semibold">{text(section.buttonLabel) || "Get in touch"}</a></div></section>;
+        return null;
+      })}
+    </div>
+  );
+}

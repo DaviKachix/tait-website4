@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/shared/Section";
 import SectionTitle from "@/components/shared/SectionTitle";
+import PublishedArticles from "@/components/cms/PublishedArticles";
 
 export const metadata: Metadata = {
   title: "Articles | TAIT",
@@ -54,6 +55,7 @@ export default function ArticlesPage() {
               </Link>
             ))}
           </div>
+          <PublishedArticles />
         </Section>
       </div>
     </main>

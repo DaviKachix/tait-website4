@@ -1,9 +1,11 @@
-import Script from "next/script";
 import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/navbar/Navbar";
 import ContactFloat from "@/components/layout/footer/ContactFloat";
 import Footer from "@/components/layout/footer/Footer";
+import ConvexClientProvider from "./ConvexClientProvider";
+import SiteAnnouncement from "@/components/cms/SiteAnnouncement";
+import CmsPageController from "@/components/cms/CmsPageController";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tait.tz"),
@@ -104,13 +106,16 @@ export default function RootLayout({
       </head>
 
       <body className="font-sans bg-[#fbf8f5] text-gray-900 antialiased">
-        <Navbar />
-        <div aria-hidden="true" className="h-24 lg:h-28" />
-        <ContactFloat />
+        <ConvexClientProvider>
+          <Navbar />
+          <div aria-hidden="true" className="h-24 lg:h-28" />
+          <SiteAnnouncement />
+          <ContactFloat />
 
-        <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen"><CmsPageController>{children}</CmsPageController></main>
 
-        <Footer />
+          <Footer />
+        </ConvexClientProvider>
       </body>
     </html>
   );

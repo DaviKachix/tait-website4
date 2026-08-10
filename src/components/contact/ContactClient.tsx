@@ -1,36 +1,35 @@
 "use client";
 
 import { useState } from "react";
-
-const requestOptions = [
-  { key: "assistance", label: "Help / Support", icon: "fa-circle-question" },
-  { key: "project", label: "Project Inquiry", icon: "fa-code" },
-  { key: "message", label: "General Message", icon: "fa-envelope" },
-];
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 export default function ContactClient() {
   const [mode, setMode] = useState<"assistance" | "project" | "message">("assistance");
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<{ ok?: boolean; msg?: string } | null>(null);
+  const [website, setWebsite] = useState("");
+  const submitForm = useMutation(api.submissions.submit);
 
-  const email = "info@tait.tz";
   const whatsapp = "255620517139";
 
   const openWhatsApp = (text: string) => window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
-  const sendEmail = (subject: string, body: string) => (window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-
   const handleChange = (field: keyof typeof form, value: string) => setForm((c) => ({ ...c, [field]: value }));
 
-  const submit = () => {
+  const submit = async () => {
     if (!form.name.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email) || !form.message.trim()) {
       setStatus({ ok: false, msg: 'Please provide name, valid email and a short message.' });
       return;
     }
 
-    setStatus({ ok: true, msg: 'Opening email client — you can edit and send.' });
-    const subject = `TAIT ${mode.toUpperCase()} REQUEST`;
-    const body = `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`;
-    sendEmail(subject, body);
+    setStatus({ msg: "Sending…" });
+    try {
+      await submitForm({ kind: "contact", category: mode, ...form, website });
+      setStatus({ ok: true, msg: "Thanks — your message has been received." });
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      setStatus({ ok: false, msg: error instanceof Error ? error.message : "Unable to send your message. Try again later." });
+    }
   };
 
   const messagePlaceholder = mode === 'project' ? 'Project summary, goals and timeline.' : mode === 'assistance' ? 'Support needed (brief).' : 'Write your message.';
@@ -75,18 +74,20 @@ export default function ContactClient() {
                 <button onClick={() => setMode('message')} className={`px-3 py-1 rounded-full text-sm ${mode==='message' ? 'bg-[#7f264a] text-white' : 'bg-slate-50 text-slate-700 border border-slate-200'}`}>Message</button>
               </div>
 
-              <div className="mt-5 space-y-3">
-                <input aria-label="Name" value={form.name} onChange={(e) => handleChange('name', e.target.value)} placeholder="Your name" className="w-full rounded-md border px-3 py-2" />
-                <input aria-label="Email" value={form.email} onChange={(e) => handleChange('email', e.target.value)} placeholder="Email" className="w-full rounded-md border px-3 py-2" />
-                <textarea aria-label="Message" value={form.message} onChange={(e) => handleChange('message', e.target.value)} placeholder={messagePlaceholder} className="w-full rounded-md border px-3 py-2" rows={4} />
+              <form onSubmit={(event) => { event.preventDefault(); submit(); }} className="mt-5 space-y-3">
+                <input aria-label="Name" value={form.name} onChange={(e) => handleChange('name', e.target.value)} placeholder="Your name" autoComplete="name" required maxLength={120} className="w-full rounded-md border px-3 py-2" />
+                <input aria-label="Email" value={form.email} onChange={(e) => handleChange('email', e.target.value)} placeholder="Email" type="email" autoComplete="email" required maxLength={254} className="w-full rounded-md border px-3 py-2" />
+                <input aria-label="Phone" value={form.phone} onChange={(e) => handleChange('phone', e.target.value)} placeholder="Phone (optional)" type="tel" autoComplete="tel" maxLength={40} className="w-full rounded-md border px-3 py-2" />
+                <textarea aria-label="Message" value={form.message} onChange={(e) => handleChange('message', e.target.value)} placeholder={messagePlaceholder} required maxLength={4000} className="w-full rounded-md border px-3 py-2" rows={4} />
+                <input name="website" value={website} onChange={(event) => setWebsite(event.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
-                {status?.msg && <div className={`text-sm ${status.ok ? 'text-emerald-700' : 'text-rose-700'}`}>{status.msg}</div>}
+                {status?.msg && <div role="status" aria-live="polite" className={`text-sm ${status.ok ? 'text-emerald-700' : 'text-rose-700'}`}>{status.msg}</div>}
 
                 <div className="mt-4 flex gap-3">
-                  <button onClick={submit} className="rounded-md bg-[#7f264a] px-4 py-2 text-white">Send</button>
-                  <button onClick={() => openWhatsApp(form.message || messagePlaceholder)} className="rounded-md bg-emerald-600 px-4 py-2 text-white">WhatsApp</button>
+                  <button type="submit" disabled={status?.msg === "Sending…"} className="rounded-md bg-[#7f264a] px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60">Send</button>
+                  <button type="button" onClick={() => openWhatsApp(form.message || messagePlaceholder)} className="rounded-md bg-emerald-600 px-4 py-2 text-white">WhatsApp</button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-
-const whatsappNumber = "+255620517139";
-const email = "info@tait.tz";
-const message = "Hello TAIT, I am contacting you through the TAIT website. I would like assistance with...";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 export default function ContactFloat() {
   const [open, setOpen] = useState(false);
+  const settings = useQuery(api.settings.getPublic);
+  const contact = settings?.contact as { whatsapp?: string; email?: string; defaultMessage?: string } | undefined;
+  const whatsappNumber = contact?.whatsapp || "+255620517139";
+  const email = contact?.email || "info@tait.tz";
+  const message = contact?.defaultMessage || "Hello TAIT, I am contacting you through the TAIT website. I would like assistance with...";
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
