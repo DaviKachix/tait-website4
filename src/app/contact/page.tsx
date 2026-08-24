@@ -1,7 +1,7 @@
 import ContactClient from '@/components/contact/ContactClient';
 
 export const metadata = {
-  title: 'Contact | TAIT',
+  title: 'Contact',
   description: 'Contact TAIT for support, projects, or general inquiries. We aim to reply within 48 hours.',
 };
 

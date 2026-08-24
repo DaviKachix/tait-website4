@@ -15,7 +15,7 @@ export default function Loading() {
         {/* LOGO (STATIC) */}
         <div className="relative w-14 h-14">
           <Image
-            src="/images/TAIT.jpg"
+            src="/images/TAIT8.svg"
             alt="TAIT Logo"
             fill
             className="object-contain rounded-full"

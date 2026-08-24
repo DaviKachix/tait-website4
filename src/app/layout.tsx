@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   publisher: "TAIT",
 
   icons: {
-    icon: [{ url: "/images/TAIT.jpg", type: "image/jpeg" }],
-    shortcut: "/images/TAIT.jpg",
-    apple: "/images/TAIT.jpg",
+    icon: [{ url: "/images/TAIT8.svg", type: "image/svg+xml" }],
+    shortcut: "/images/TAIT8.svg",
+    apple: "/images/apple-icon.png",
   },
 
   manifest: "/manifest.json",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/TAIT.jpg",
+        url: "/images/slider1.webp",
         width: 1200,
         height: 630,
         alt: "TAIT",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "TAIT — Practical tech for mission",
     description:
       "TAIT empowers the Church through technology, media and research.",
-    images: ["/images/TAIT.jpg"],
+    images: ["/images/slider1.webp"],
     creator: "@tait",
   },
 

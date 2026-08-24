@@ -5,40 +5,67 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Projects | TAIT",
-  description: "A summary of TAIT-led church systems, media, training, and strategic mission projects.",
+  title: "Projects",
+  description: "Explore digital platforms, office management systems, event technology, media, and mission projects delivered by TAIT for Adventist organizations and partners.",
+  keywords: ["TAIT projects", "OMAS", "Adventist Office Management System", "church technology", "Tanzania Adventist technology"],
+  alternates: { canonical: "/projects" },
+  openGraph: {
+    title: "TAIT Projects — Technology for Mission",
+    description: "Digital systems and mission platforms delivered by TAIT for churches, institutions, and partner organizations.",
+    url: "/projects",
+    type: "website",
+    images: [{ url: "/images/laptop.webp", width: 1200, height: 630, alt: "TAIT digital systems and projects" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TAIT Projects — Technology for Mission",
+    description: "Explore digital systems and mission platforms delivered by TAIT.",
+    images: ["/images/laptop.webp"],
+  },
 };
 
 const projects = [
+  {
+    title: "OMAS",
+    subtitle: "Adventist Office Management System",
+    url: "https://www.omas.adventisthub.org",
+    description: "A centralized office management platform built for Adventist organizations to coordinate administration, records, workflows, and institutional operations.",
+    image: "/images/laptop.webp",
+    icon: "fa-building-columns",
+  },
   {
     title: "Pastors Kids Association",
     url: "https://pakia.tz",
     description: "A ministry portal supporting children’s pastoral engagement and resource coordination.",
     image: "/images/TAIT SITE SLIDERS upd-03.webp",
+    icon: "fa-people-group",
   },
   {
     title: "NTUC Events Management",
     url: "https://events.ntucadventist.org",
     description: "An event management system for Adventist conferences, registration and media planning.",
     image: "/images/media-team2.webp",
+    icon: "fa-calendar-check",
   },
   {
     title: "Tanzania Writers & Authors Association",
     url: "https://taawa.or.tz",
     description: "A digital community platform for writers, publications and literary collaboration.",
-    image: "/images/team-photo3.webp",
+    image: "/images/research.webp",
+    icon: "fa-pen-nib",
   },
   {
     title: "Gain Tanzania",
     url: "https://gain.tz",
     description: "A digital network enabling entrepreneurship, community growth and ministry partnerships.",
     image: "/images/working.webp",
+    icon: "fa-network-wired",
   },
 ];
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-[#faf8f4] py-14">
+    <div className="min-h-screen bg-[#faf8f4] py-14">
       <div className="max-w-7xl mx-auto px-6">
         <Section bg="white" spacing="lg">
           <div className="text-center">
@@ -70,7 +97,10 @@ export default function ProjectsPage() {
                   />
                 </div>
                 <div className="p-7">
-                  <h2 className="text-2xl font-semibold text-[#7f264a]">{project.title}</h2>
+                  <div className="flex items-start gap-3">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#7f264a]/10 text-[#7f264a]"><i className={`fa-solid ${project.icon}`} aria-hidden="true" /></span>
+                    <div><h2 className="text-2xl font-semibold text-[#7f264a]">{project.title}</h2>{project.subtitle && <p className="mt-1 text-sm font-semibold text-slate-700">{project.subtitle}</p>}</div>
+                  </div>
                   <p className="mt-4 text-gray-600 leading-relaxed">{project.description}</p>
                   <p className="mt-4 text-sm font-semibold text-[#7f264a]">{project.url.replace(/^https?:\/\//, "")}</p>
                 </div>
@@ -86,6 +116,6 @@ export default function ProjectsPage() {
           </div>
         </Section>
       </div>
-    </main>
+    </div>
   );
 }

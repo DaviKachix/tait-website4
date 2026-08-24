@@ -22,6 +22,7 @@ export const submit = mutation({
     email: v.string(),
     phone: v.optional(v.string()),
     message: v.optional(v.string()),
+    details: v.optional(v.record(v.string(), v.string())),
     website: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
@@ -33,6 +34,13 @@ export const submit = mutation({
     const phone = args.phone ? clean(args.phone, "Phone", 40) : undefined;
     const message = args.message ? clean(args.message, "Message", 4_000) : undefined;
     const category = clean(args.category, "Category", 60).toLowerCase();
+    const details = args.details
+      ? Object.fromEntries(
+          Object.entries(args.details)
+            .map(([key, value]) => [key, clean(value, key, 4_000)] as const)
+            .filter(([, value]) => value),
+        )
+      : undefined;
 
     if (name.length < 2) throw new ConvexError("Please enter your full name.");
     if (!EMAIL_PATTERN.test(email)) throw new ConvexError("Please enter a valid email address.");
@@ -56,6 +64,7 @@ export const submit = mutation({
       email,
       ...(phone ? { phone } : {}),
       ...(message ? { message } : {}),
+      ...(details && Object.keys(details).length ? { details } : {}),
       status: "new",
       notificationStatus: "pending",
       createdAt: now,

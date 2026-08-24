@@ -9,6 +9,7 @@ export default defineSchema({
     email: v.string(),
     phone: v.optional(v.string()),
     message: v.optional(v.string()),
+    details: v.optional(v.record(v.string(), v.string())),
     status: v.union(
       v.literal("new"),
       v.literal("in_progress"),
